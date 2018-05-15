@@ -3,4 +3,4 @@ env:
 	ln -fs $(abspath ./src/manage.py) "$$(pipenv --venv)/bin/manage.py"
 
 requirements:
-	pip install -r ./etc/requirements.txt
+	pipenv install
