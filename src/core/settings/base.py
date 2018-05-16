@@ -4,6 +4,7 @@ from pathlib import Path
 
 # Build paths like this str(PROJECT_ROOT / 'foo' / 'bar')
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # This is what we use to prefix dbs and cache keys etc
 DEPLOY_ENV = os.environ['DEPLOY_ENV']
@@ -15,8 +16,9 @@ SECRET_KEY = 'asjofasfbasufbasiufuiasbfuiasbf'
 
 # Application definition
 INSTALLED_APPS = [
+    'webpack_loader',
     'core',
-    
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -49,7 +51,8 @@ ROOT_URLCONF = 'core.urls'
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-STATIC_URL = '/'.join([str(PROJECT_ROOT), 'var', 'static/'])
+STATIC_URL = '/assets/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 SITE_ID = 1
 
@@ -90,12 +93,15 @@ TEMPLATES = [{
     }
 }]
 
+WEBPACK_LOADER = {
+    'DEFAULT': {
+            'BUNDLE_DIR_NAME': 'bundles/',
+            'STATS_FILE': os.path.join(str(PROJECT_ROOT), 'src', 'frontend', 'config', 'webpack-stats.dev.json'),
+        }
+}
+
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
-
-SECURE_REDIRECT_EXEMPT = [
-    r'^c6e3aaf6776ca314d3a1989de4c73798b2b8708f/$',
-]
 
