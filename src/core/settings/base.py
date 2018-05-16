@@ -32,13 +32,14 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'core.middleware.AppendSlashMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -96,7 +97,7 @@ TEMPLATES = [{
 WEBPACK_LOADER = {
     'DEFAULT': {
             'BUNDLE_DIR_NAME': 'bundles/',
-            'STATS_FILE': os.path.join(str(PROJECT_ROOT), 'src', 'frontend', 'config', 'webpack-stats.dev.json'),
+            'STATS_FILE': os.path.join(str(PROJECT_ROOT), 'frontend', 'config', 'webpack-stats.dev.json'),
         }
 }
 
