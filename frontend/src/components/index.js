@@ -1,6 +1,6 @@
-import profile from './profile';
-import header from './header';
-import footer from './footer';
+import profile from './profile/index';
+import header from './header/index';
+import footer from './footer/index';
 
 
 export const Profile = profile;
