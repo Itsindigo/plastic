@@ -2,16 +2,9 @@ import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
+import { Profile, Header, Footer } from './components';
+import './styles/App.css';
 
-import './App.css';
-
-const Profile = () => {
-    return (
-        <div>
-            <h1>Hello my name is Matthew</h1>
-        </div>
-    )
-};
 
 
 class App extends Component {
@@ -19,15 +12,14 @@ class App extends Component {
         return (
             <Provider store={store}>
                 <div className="App">
-                    <header className="App-header">
-                        <h1 className="App-title">Hello World!</h1>
-                    </header>
+                    <Header />
                     <nav>
                         <Link to='/profile'>Profile</Link>
                     </nav>
                     <div>
                         <Route path='/profile' component={Profile} />
                     </div>
+                    <Footer />
                 </div>
             </Provider>
         );
