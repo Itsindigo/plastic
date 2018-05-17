@@ -16,8 +16,9 @@ class App extends Component {
                     <nav>
                         <Link to='/profile'>Profile</Link>
                     </nav>
-                    <div>
+                    <div className='wrapper'>
                         <Route path='/profile' component={Profile} />
+                        <div className='push'></div>
                     </div>
                     <Footer />
                 </div>
