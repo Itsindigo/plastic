@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
 
 import './App.css';
 
@@ -15,19 +17,26 @@ const Profile = () => {
 class App extends Component {
     render() {
         return (
-            <div className="App">
-                <header className="App-header">
-                    <h1 className="App-title">Hello World!</h1>
-                </header>
-                <nav>
-                    <Link to='/profile'>Profile</Link>
-                </nav>
-                <div>
-                    <Route path='/profile' component={Profile} />
+            <Provider store={store}>
+                <div className="App">
+                    <header className="App-header">
+                        <h1 className="App-title">Hello World!</h1>
+                    </header>
+                    <nav>
+                        <Link to='/profile'>Profile</Link>
+                    </nav>
+                    <div>
+                        <Route path='/profile' component={Profile} />
+                    </div>
                 </div>
-            </div>
+            </Provider>
         );
     }
 }
 
 export default App;
+
+
+
+
+

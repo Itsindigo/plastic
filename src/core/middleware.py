@@ -4,15 +4,11 @@ from django.http import HttpResponsePermanentRedirect
 
 class AppendSlashMiddleware:
     """
-    Functionally very similar to CommonMiddleware. However appends a slash before request is executed.
-    However, this app runs a Single-Page-App, unlike a typical Django setup which tries to resolve your URL, if a 404
-    is returned, Django will append a slash and try again, and possibly resolve the URL, before 404'ing.
+    Appends slash to any incoming requests, this way we can resolve server side urls with certainty before falling
+    back to our Single-Page-App (SPA) routing configuration.
 
-    In this instance we are handling 404's in the Single-Page-App, and a match all URL is the default fallback,
-    there is then a separate routing module in JavaScript land which may throw a 404 page further up the line.
-
-    Long and short, we need to append a slash before the request is processed in order to guarantee lookup on our
-    server routes.
+    Duplicates some logic with the CommonMiddleware, however CommonMiddleware expects 404's to be handled in the Django
+    URL routing config, rather than in the client.
     """
 
     def __init__(self, get_response):
